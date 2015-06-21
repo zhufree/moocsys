@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    {% block link %}{% endblock %}
+	<title>{% block title %}Home{% endblock%}</title>
+</head>
+<body>
+<div class='container-fluid'>
+	<div class='row panel panel-default'>
+	<ul class="nav nav-pills panel-body col-md-4 col-md-offset-8">
+		<li role="presentation" ><a href="/">Home</a></li>
+		{% if user.is_authenticated %}
+		<li role="presentation" ><a href="/account/profile/">{{user.username}}</a></li>
+		<li role="presentation" ><a href="/account/logout/">Logout</a></li>
+		{% else %}
+  		<li role="presentation" class="dropdown">
+    		<a class="dropdown-toggle" data-toggle="dropdown" href="/account/login/" role="button" aria-expanded="false">Login
+    			<span class="caret"></span>
+    		</a>
+    	<ul class="dropdown-menu" role="menu">
+      		<li><a href="/account/login/">Student</a></li>
+      		<li><a href="/account/login/">Teacher</a></li>
+    	</ul>
+  		</li>
+  		{% endif %}
+	</ul>
+	</div>
+</div>
+<div class='container-fluid'>
+{% block content %}
+<div class="row panel panel-default">
+    {% for course in courses %}
+    <div class="col-md-4 panel-body">
+      <a href="course/{{course.id}}/">
+        <img src="{{course.img_url}}">
+      </a>
+      <h3>{{course.name}}</h3>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+</div>
+</body>
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</html>
