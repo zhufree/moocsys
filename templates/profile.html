@@ -33,6 +33,7 @@
 		</div>
 	</form>
 	{% else %}
+	
 	<form method="POST" action="." class="form-horizontal row">{% csrf_token %}
 		<div class="form-group col-md-8 col-md-offset-2">
 			<label  class="col-sm-2 control-label" for="exampleInputUsername">学校:</label>
@@ -43,7 +44,7 @@
 		<div class="form-group col-md-8 col-md-offset-2">
 			<label  class="col-sm-2 control-label" for="exampleInputPassword">密码:</label>
 			<div class="col-sm-10">
-				<input type='password' name='changePassword' value="{{user.user_student.password}}" class="form-control" id='exampleInputPassword' placeholder="Enter Password"/>
+				<input type='password' name='changePassword' value="{{user.password}}" class="form-control" id='exampleInputPassword' placeholder=""/>
 			</div>
 		</div>
 		<div class="form-group col-md-2 col-md-offset-4">
@@ -52,12 +53,30 @@
 		</div>
 	</form>
 	{% endif %}
-	<div class="row panel panel-default">
-		<ul class="list-group">
+	<div class="col-md-12 panel panel-default">
+		<div class="list-group panel-body">
+			{% if user.user_student %}
+				<a class="list-group-item active" >我参加的课程</a>
+			{% else %}
+				<a class="list-group-item active" >我发布的课程</a>
+				<a class="list-group-item info" href="/add_new_course/"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起新课程</a>
+			{% endif %}
 		  	{% for course in courses %}
-			<li class="list-group-item">{{course.name}}</li>
+				<a class="list-group-item" href="/course/{{course.id}}">{{course.name}}</a>
 			{% endfor %}
-		</ul>
+		</div>
+		<div class="list-group panel-body">
+			<a class="list-group-item active">我发起的讨论</a>
+		  	{% for discuss in discusses %}
+				<a class="list-group-item" href="/discuss/{{discuss.id}}">{{discuss.name}}</a>
+			{% endfor %}
+		</div>
+		<div class="list-group panel-body">
+			<a class="list-group-item active">我提出的问题</a>
+		  	{% for question in questions %}
+				<a class="list-group-item" href="/question/{{question.id}}">{{question.title}}</a>
+			{% endfor %}
+		</div>
 		
 	</div>
 {% endblock %}

@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% block title %}Discusses{% endblock %}
+{% block content %}
+{% for discuss in discusses %}
+<div class="list-group">
+  <a href="/discuss/{{discuss.id}}/" class="list-group-item">
+    <h4 class="list-group-item-heading">{{discuss.name}}</h4>
+    <p class="list-group-item-text">{{discuss.content}}</p>
+  </a>
+</div>
+{% endfor %}
+{% endblock %}

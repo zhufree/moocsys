@@ -28,7 +28,7 @@
 			</div>
 			{% for discuss in discusses %}
 			<div class="panel-body">
-				<p class="panel-title">{{discuss.name}}</p>
+				<p class="panel-title"><a href="/discuss/{{discuss.id}}/">{{discuss.name}}</a></p>
 				<p class="panel-body">{{discuss.content}}</p>
 				<p class="panel-body">{{discuss.time}}</p>
 			</div>

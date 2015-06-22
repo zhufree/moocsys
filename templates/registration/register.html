@@ -1,9 +1,29 @@
-{% extends "base.html" %}
-{% block title %}|天使注册{% endblock %}
-{% block head %}天使注册{% endblock %}
+{% extends "index.html" %}
+{% block title %}Register{% endblock %}
 {% block content %}
-<form method='POST' action='.'>{% csrf_token %}
-{{form.as_p}}
-<input type='submit' value='注册'/>
+{% if user.is_authenticated %}
+<div class="jumbotron">
+  <h1>你已经注册过啦！</h1>
+  <p><a class="btn btn-primary btn-lg" href="/" role="button">看看有哪些课程吧</a></p>
+</div>
+{% else %}
+<form method='POST' action='.' class='form-horizontal row'>{% csrf_token %}
+{% for field in form %}
+<div class="form-group col-md-12 col-md-offset-1">
+	<label  class="col-sm-1 control-label" for="id_{{field.name}}">{{field.label}}:</label>
+	<div class="col-sm-10 ">{{field}}</div>
+	<div class="col-sm-10 text-danger">{{ field.errors }}</div>
+</div>
+{% endfor %}
+<div class="form-group col-md-10 col-md-offset-1">
+	<select class="form-control col-sm-8 col-sm-offset-1" name="user_type">
+	  <option value="teacher">教师</option>
+	  <option value="student">学生</option>
+	</select>
+</div>
+<div class="form-group col-md-10 col-md-offset-4">
+	<input type='submit' class="col-md-8 col-md-offset-2 btn btn-lg btn-primary" value='Register'/>
+</div>
 </form>
+{% endif %}
 {% endblock %}

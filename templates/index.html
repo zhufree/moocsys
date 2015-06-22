@@ -12,19 +12,22 @@
 	<ul class="nav nav-pills panel-body col-md-4 col-md-offset-8">
 		<li role="presentation" ><a href="/">Home</a></li>
 		{% if user.is_authenticated %}
-		<li role="presentation" ><a href="/account/profile/">{{user.username}}</a></li>
-		<li role="presentation" ><a href="/account/logout/">Logout</a></li>
+    <li role="presentation" ><a href="/discuss/">Discuss</a></li>
+    <li role="presentation" ><a href="/question/">Question</a></li>
+    <li role="presentation" class='active'><a href="/accounts/profile/">{{user.username}}</a></li>
+    <li role="presentation" ><a href="/accounts/logout/">Logout</a></li>
 		{% else %}
-  		<li role="presentation" class="dropdown">
-    		<a class="dropdown-toggle" data-toggle="dropdown" href="/account/login/" role="button" aria-expanded="false">Login
+  	<li role="presentation" class="dropdown">
+    		<a class="dropdown-toggle" data-toggle="dropdown" href="/accounts/login/" role="button" aria-expanded="false">Login
     			<span class="caret"></span>
     		</a>
-    	<ul class="dropdown-menu" role="menu">
-      		<li><a href="/account/login/">Student</a></li>
-      		<li><a href="/account/login/">Teacher</a></li>
-    	</ul>
-  		</li>
-  		{% endif %}
+      	<ul class="dropdown-menu" role="menu">
+        		<li><a href="/accounts/login/">Student</a></li>
+        		<li><a href="/accounts/login/">Teacher</a></li>
+      	</ul>
+  	</li>
+    <li role="presentation" ><a href="/accounts/register/">Register</a></li>
+  	{% endif %}
 	</ul>
 	</div>
 </div>
