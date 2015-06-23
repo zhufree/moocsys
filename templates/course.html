@@ -22,18 +22,18 @@
 	{% if is_attended %}
 		<div class="row panel panel-default">
 		{% if discusses %}
-		<div class="col-sm-6">
-			<div class="panel-heading">
-				<h3 class="panel-title">讨论</h3>
+			<div class="col-sm-6">
+				<div class="panel-heading">
+					<h3 class="panel-title">讨论</h3>
+				</div>
+				{% for discuss in discusses %}
+				<div class="panel-body">
+					<p class="panel-title"><a href="/discuss/{{discuss.id}}/">{{discuss.name}}</a></p>
+					<p class="panel-body">{{discuss.content}}</p>
+					<p class="panel-body">{{discuss.time}}</p>
+				</div>
+				{% endfor %}
 			</div>
-			{% for discuss in discusses %}
-			<div class="panel-body">
-				<p class="panel-title"><a href="/discuss/{{discuss.id}}/">{{discuss.name}}</a></p>
-				<p class="panel-body">{{discuss.content}}</p>
-				<p class="panel-body">{{discuss.time}}</p>
-			</div>
-			{% endfor %}
-		</div>
 		{% endif %}
 		{% if questions %}
 		<div class="col-sm-6">
@@ -61,8 +61,8 @@
 			</div>
 			{% else %}
 			<div class="form-group">
-				<select class="form-control col-sm-6 " name="post_type">
-				<option value="course_discuss">讨论</option>			
+				<input type="hidden" name="post_type" value="course_discuss">
+				<label class="panel-heading control-label col-sm-4 ">发起新的讨论或问题</label>
 			</div>
 			{% endif %}
 			<div class="form-group col-md-8 col-md-offset-2">

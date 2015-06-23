@@ -208,11 +208,11 @@ def course_page(request,id):
             is_attended=False
     else:
         is_student=False
-        if cur_course.teacher==cur_user:
+        if cur_course.teacher==cur_user.user_teacher:
             is_attended=True
         else:
             is_attended=False
-   # print is_student,is_attended
+    print is_student,is_attended
     if cur_course.course_discuss.all():
         discusses=cur_course.course_discuss.all()
     else:
