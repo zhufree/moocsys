@@ -20,7 +20,7 @@ class Course(models.Model):
 
 class Student(models.Model):
     user=models.OneToOneField(User,related_name="user_student")
-    studentid=models.BigIntegerField(unique=True,blank=True)
+    studentid=models.BigIntegerField(unique=True,blank=True,null=True)
     major=models.CharField(max_length=200,blank=True)
     school=models.CharField(max_length=200,blank=True)
     courses=models.ManyToManyField(Course,related_name='course_student',blank=True)#参加的课程
