@@ -101,6 +101,15 @@ def post_page(request):
                 )
             cur_question.save()
             return HttpResponseRedirect('/course/%d'%cur_course.id)#返回课程页面
+        elif post_type=='topic_discuss':
+            cur_discuss=Discuss.objects.create(
+                name=request.POST.get('title'),
+                content=request.POST.get('content'),
+                topic=request.POST.get('title'),
+                )
+            cur_discuss.student=cur_user.user_student
+            cur_discuss.save()
+            return HttpResponseRedirect('/discuss/%d'%cur_discuss.id)#返回课程页面
         else:
             return HttpResponseRedirect('/')
     else:

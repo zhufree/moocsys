@@ -55,9 +55,16 @@ class Reply(models.Model):
     question=models.ForeignKey(Question,related_name='question_reply',blank=True,null=True)
     time=models.DateTimeField(auto_now_add=True)
 
+class Grade(models.Model):
+    mark=models.IntegerField(default=0)
+    course=models.ForeignKey(Course,related_name='course_grade')
+    student=models.ForeignKey(Student,related_name='student_grade')
+    time=models.DateTimeField(auto_now_add=True)
+
 admin.site.register(Student)
 admin.site.register(Teacher)
 admin.site.register(Course)
 admin.site.register(Discuss)
 admin.site.register(Question)
 admin.site.register(Reply)
+admin.site.register(Grade)

@@ -5,6 +5,11 @@
   <div class="panel-heading">
     <h3 class="panel-title"><a href="/course/{{discuss.course.id}}/">{{discuss.course.name}}</a>:{{discuss.name}}</h3>
     <p class="panel-body">{{discuss.content}}</p>
+    {% if discuss.student %}
+    <p class="panel-body">{{discuss.student.user.username}}</p>
+    {% else %}
+    <p class="panel-body">{{discuss.teacher.user.username}}</p>
+    {% endif %}
   </div>
   {% if replys %}
   <div class="panel-body">
